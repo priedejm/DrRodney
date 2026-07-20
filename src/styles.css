@@ -1,0 +1,174 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&: is(.dark *));
+
+@theme inline {
+	--radius-sm: calc(var(--radius) - 2px);
+	--radius-md: var(--radius);
+	--radius-lg: calc(var(--radius) + 2px);
+	--radius-xl: calc(var(--radius) + 6px);
+	--radius-2xl: calc(var(--radius) + 12px);
+
+	--font-serif: var(--font-serif-family);
+	--font-sans: var(--font-sans-family);
+
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-ring-offset-background: var(--background);
+
+	--color-ink: var(--ink);
+	--color-forest: var(--forest);
+	--color-cream: var(--cream);
+	--color-charcoal: var(--charcoal);
+	--color-gold: var(--gold);
+	/* Back-compat alias - some routes still reference var(--navy) */
+	--color-navy: var(--ink);
+}
+
+:root {
+	--radius: 0.125rem;
+
+	/* Editorial palette */
+	--ink: #0d0d0d; /* near-black - hero & dark sections */
+	--forest: #1b4332; /* sole accent - CTAs, hovers */
+	--cream: #f5f0e8; /* warm off-white content sections */
+	--charcoal: #2c2c2c; /* body text on light sections */
+	--gold: #c9a96e; /* dividers + monogram only */
+	/* Back-compat: existing routes reference var(--navy) */
+	--navy: var(--ink);
+
+	/* Semantic tokens - light surface = cream */
+	--background: var(--cream);
+	--foreground: var(--charcoal);
+	--card: #ffffff;
+	--card-foreground: var(--charcoal);
+	--popover: #ffffff;
+	--popover-foreground: var(--charcoal);
+	--primary: var(--ink);
+	--primary-foreground: #ffffff;
+	--secondary: var(--forest);
+	--secondary-foreground: #ffffff;
+	--muted: #ece6db;
+	--muted-foreground: #6b6357;
+	--accent: var(--forest);
+	--accent-foreground: #ffffff;
+	--destructive: oklch(0.55 0.22 27);
+	--destructive-foreground: #ffffff;
+	--border: #e2dac9;
+	--input: #e2dac9;
+	--ring: var(--forest);
+
+	--font-serif-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+	--font-sans-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Dark surfaces: scoped token inversion */
+.surface-navy,
+.surface-ink {
+	--background: var(--ink);
+	--foreground: #ffffff;
+	--card: #161616;
+	--card-foreground: #ffffff;
+	--muted: #1a1a1a;
+	--muted-foreground: rgba(255, 255, 255, 0.62);
+	--border: rgba(255, 255, 255, 0.12);
+	--input: rgba(255, 255, 255, 0.18);
+	--primary: #ffffff;
+	--primary-foreground: var(--ink);
+	--secondary: var(--forest);
+	--secondary-foreground: #ffffff;
+	background-color: var(--ink);
+	color: #ffffff;
+}
+
+.surface-forest {
+	--background: var(--forest);
+	--foreground: #ffffff;
+	--card: color-mix(in oklch, var(--forest) 80%, white);
+	--card-foreground: #ffffff;
+	--muted: color-mix(in oklch, var(--forest) 85%, white);
+	--muted-foreground: rgba(255, 255, 255, 0.7);
+	--border: rgba(255, 255, 255, 0.18);
+	--input: rgba(255, 255, 255, 0.25);
+	--primary: #ffffff;
+	--primary-foreground: var(--forest);
+	background-color: var(--forest);
+	color: #ffffff;
+}
+
+.surface-cream {
+	background-color: var(--cream);
+	color: var(--charcoal);
+}
+
+.surface-white {
+	background-color: #ffffff;
+	color: var(--charcoal);
+}
+
+@layer base {
+	* {
+		border-color: var(--color-border);
+	}
+
+	html {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	body {
+		background-color: var(--color-background);
+		color: var(--color-foreground);
+		font-family: var(--font-sans);
+		font-feature-settings: "ss01", "cv11";
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		font-family: var(--font-serif);
+		font-weight: 500;
+		letter-spacing: -0.012em;
+	}
+}
+
+/* Scroll-reveal animation */
+.reveal-block {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-block[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Utility - small caps editorial labels */
+@utility smallcaps {
+	font-variant: all-small-caps;
+	letter-spacing: 0.18em;
+}
