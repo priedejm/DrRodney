@@ -30,62 +30,44 @@ export const Route = createFileRoute("/")({
 const PILLARS = [
   {
     n: "01",
-    title: "Speaker",
+    title: "Speaking",
     body: "Keynote and conference speaker on integrative health, resilience, leadership, and human performance. Built for medical, executive, and lifestyle audiences.",
     link: { to: "/speaking", label: "Explore Speaking" },
   },
   {
     n: "02",
-    title: "Author",
+    title: "Writing",
     body: "The Bespoke Life: Design Your Path, Purpose, and Prosperity. A practical guide to building a life that is authentically yours - not the life you were told to want.",
     link: { to: "/books", label: "About the Book" },
   },
   {
     n: "03",
     title: "Clinician",
-    body: "Founder of Charleston Medicine and Behavioral Health - a concierge-style practice delivering integrated internal medicine and behavioral health care on James Island, Charleston, SC.",
-    link: { href: "https://CharlestonMedicine.com", label: "Visit the Practice" },
+    body: "Success & Sanity - Rodney sitting down with successful people to explore what achievement actually looks like behind the scenes.",
+    link: { to: "/podcast", label: "Conversations" },
   },
 ];
 
 const TOPICS = [
   {
     n: "01",
-    title: "Peak Performance and Human Potential",
-    audience: "Healthcare · Business · Lifestyle Audiences",
+    title: "The Psychology of Sustainable Performance",
+    audience: "How people perform at a high level over time.",
   },
   {
     n: "02",
     title: "The Mind-Body Connection",
-    audience: "Healthcare · Athletic Performance · Wellness",
+    audience: "How physical and psychological systems interact to influence performance.",
   },
   {
     n: "03",
-    title: "Resilience, Burnout, and Recovery",
-    audience: "Physicians · First Responders · Executives",
+    title: "Resilience, Burnout & Recovery",
+    audience: "What happens when the demands exceed our ability to recover.",
   },
   {
     n: "04",
     title: "Leadership Under Pressure",
-    audience: "Boards · Executive Teams · Founders",
-  },
-];
-
-const ELSEWHERE = [
-  {
-    title: "Dr. Rodney Andrews",
-    body: "The personal brand - biography, writing, and speaking hub.",
-    href: "https://DrRodneyAndrews.com",
-  },
-  {
-    title: "Charleston Medicine and Behavioral Health",
-    body: "Integrated internal medicine and behavioral health practice in Charleston, SC.",
-    href: "https://CharlestonMedicine.com",
-  },
-  {
-    title: "Peak Performance Podcast",
-    body: "Long-form conversations on mindset, discipline, and human performance.",
-    href: "/podcast",
+    audience: "How leaders think, decide and lead when stakes are high.",
   },
 ];
 
@@ -118,7 +100,7 @@ function HomePage() {
                 className="mb-6 text-[10px] uppercase tracking-[0.36em]"
                 style={{ color: "var(--gold)" }}
               >
-                Keynote Speaker · Clinician · Author
+                Speaker · Author · Advanced Provider
               </p>
               <h1 className="font-serif font-light leading-[0.95] tracking-[-0.02em] text-white text-[clamp(3.2rem,8vw,7rem)]">
                 Dr. W. Rodney
@@ -129,9 +111,7 @@ function HomePage() {
               <div className="mt-10 max-w-2xl">
                 <GoldRule />
                 <p className="mt-6 text-[0.78rem] leading-[1.8] uppercase tracking-[0.18em] text-white/70">
-                  Doctor of Nursing Practice - Duke University · Board Certified AGNP-BC, PMHNP ·
-                  Behavioral Health and Internal Medicine · Founder, Charleston Medicine and
-                  Behavioral Health
+                  DNP, AGNP-BC, PMHNP
                 </p>
               </div>
               <div className="mt-10 flex flex-wrap gap-3 pointer-events-auto">
@@ -152,13 +132,11 @@ function HomePage() {
         <Reveal>
           <div className="mx-auto max-w-4xl">
             <p className="font-serif text-[clamp(1.5rem,2.4vw,2.2rem)] font-light leading-[1.45] tracking-[-0.005em] text-[var(--charcoal)]">
-              Dr. Andrews is a Doctor of Nursing Practice and behavioral health specialist whose work
-              sits at the intersection of clinical medicine and human performance. From humble
-              beginnings in rural North Carolina to founding one of Charleston's premier concierge
-              practices, his story is one of vision, discipline, and an unwavering commitment to
-              helping people become the best version of themselves. He speaks to audiences willing to take
-              the long view on resilience, leadership, and the discipline required to build a life that
-              is authentically yours.
+              Success isn't just about achieving more. It's about making sure what you're building
+              aligns with the life you actually want to live. Dr. Rodney Andrews explores the
+              intersection of psychology, performance, purpose, and personal fulfillment - challenging
+              people to look beyond traditional measures of success and consider not only what they
+              want to achieve, but why they're pursuing it.
             </p>
             <div className="mt-12">
               <Link
@@ -178,7 +156,7 @@ function HomePage() {
         <Reveal>
           <div className="max-w-4xl">
             <Eyebrow tone="gold">What I Do</Eyebrow>
-            <H2 className="text-white">Three pillars. One mission.</H2>
+            <H2 className="text-white">Explore the Work</H2>
           </div>
         </Reveal>
         <div className="mt-20 grid gap-px bg-white/10 md:grid-cols-3">
@@ -243,7 +221,7 @@ function HomePage() {
                     <h3 className="mt-4 font-serif text-2xl leading-snug text-[var(--charcoal)]">
                       {t.title}
                     </h3>
-                    <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--charcoal)]/60">
+                    <p className="mt-3 text-sm leading-[1.6] text-[var(--charcoal)]/60">
                       {t.audience}
                     </p>
                   </div>
@@ -263,23 +241,6 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* QUOTE */}
-      <Section surface="navy">
-        <Reveal>
-          <div className="mx-auto max-w-4xl text-center">
-            <GoldRule className="mx-auto" />
-            <p className="mt-10 font-serif text-[clamp(1.8rem,3.6vw,3rem)] font-light italic leading-[1.3] text-white">
-              From the exam room to the stage, the mission is the same - help people become the best
-              version of themselves.
-            </p>
-            <p className="mt-10 text-[0.7rem] uppercase tracking-[0.4em] text-white/65">
-              - Dr. Rodney Andrews
-            </p>
-            <GoldRule className="mx-auto mt-10" />
-          </div>
-        </Reveal>
-      </Section>
-
       {/* BOOK */}
       <Section surface="navy">
         <div className="grid items-center gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
@@ -293,7 +254,7 @@ function HomePage() {
           </Reveal>
           <Reveal delay={120}>
             <div>
-              <Eyebrow tone="gold">New Book</Eyebrow>
+              <Eyebrow tone="gold">Coming Spring 2027</Eyebrow>
               <h2 className="font-serif text-[clamp(2.4rem,5vw,4.2rem)] font-light leading-[1.05] text-white">
                 The Bespoke Life:
               </h2>
@@ -333,10 +294,10 @@ function HomePage() {
           <Reveal>
             <div>
               <Eyebrow tone="gold">The Podcast</Eyebrow>
-              <H2>Peak Performance with Dr. Rodney Andrews.</H2>
+              <H2>Success & Sanity with Dr. Rodney Andrews.</H2>
               <p className="mt-8 max-w-xl text-[17px] leading-[1.85] text-[var(--charcoal)]/80">
-                One conversation at a time - on health, business, longevity, leadership, and the
-                things nobody else is talking about.
+                Candid conversations with successful people about ambition, mental health,
+                motivation, performance, and what achievement looks like behind the scenes.
               </p>
             </div>
           </Reveal>
@@ -351,45 +312,7 @@ function HomePage() {
           </Reveal>
         </div>
 
-        <div className="mt-16">
-          <Reveal>
-            <div className="mb-10 flex items-center gap-6">
-              <Eyebrow tone="gold">Latest Episodes</Eyebrow>
-              <div className="h-px flex-1 bg-[var(--charcoal)]/10" />
-            </div>
-          </Reveal>
-          <div className="grid gap-6 md:grid-cols-2">
-            {[
-              { season: "Season 1", ep: "Episode 1" },
-              { season: "Season 1", ep: "Episode 2" },
-            ].map((e, i) => (
-              <Reveal key={e.ep} delay={i * 120}>
-                <article className="surface-ink overflow-hidden h-full">
-                  <PhotoPlaceholder
-                    label={`REPLACE WITH ${e.season.toUpperCase()} ${e.ep.toUpperCase()} THUMBNAIL AND TITLE`}
-                    variant="wide"
-                    tone="charcoal"
-                  />
-                  <div className="p-8 md:p-10">
-                    <p
-                      className="text-[10px] uppercase tracking-[0.3em]"
-                      style={{ color: "var(--gold)" }}
-                    >
-                      {e.season} · {e.ep}
-                    </p>
-                    <h3 className="mt-4 font-serif text-2xl leading-snug text-white">
-                      Replace with episode title
-                    </h3>
-                    <p className="mt-4 text-sm leading-[1.8] text-white/65">
-                      Replace with a short episode description that captures the conversation and its
-                      guest.
-                    </p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
+        {/* Latest Episodes module hidden until real episodes exist and are approved */}
         <Reveal>
           <div className="mt-14 text-center">
             <CTAButton variant="forest-outline" to="/podcast">
@@ -397,58 +320,6 @@ function HomePage() {
             </CTAButton>
           </div>
         </Reveal>
-      </Section>
-
-      {/* ELSEWHERE */}
-      <Section surface="cream">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
-          <Reveal>
-            <div>
-              <Eyebrow tone="gold">Elsewhere</Eyebrow>
-              <H2>The rest of the work.</H2>
-              <p className="mt-8 text-[15px] leading-[1.85] text-[var(--charcoal)]/75">
-                The keynote stage is one part of a larger body of work - a clinical practice, a
-                personal brand, and an ongoing conversation on performance.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <div className="grid gap-px bg-[var(--charcoal)]/15 sm:grid-cols-3">
-              {ELSEWHERE.map((e) => {
-                const external = e.href.startsWith("http");
-                const inner = (
-                  <div className="flex h-full flex-col bg-[var(--cream)] p-7">
-                    <h3 className="font-serif text-xl leading-snug text-[var(--charcoal)]">
-                      {e.title}
-                    </h3>
-                    <p className="mt-4 flex-1 text-sm leading-[1.7] text-[var(--charcoal)]/70">
-                      {e.body}
-                    </p>
-                    <ArrowUpRight
-                      className="mt-8 h-4 w-4"
-                      style={{ color: "var(--forest)" }}
-                    />
-                  </div>
-                );
-                return external ? (
-                  <a
-                    key={e.title}
-                    href={e.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block transition-opacity hover:opacity-80"
-                  >
-                    {inner}
-                  </a>
-                ) : (
-                  <Link key={e.title} to={e.href} className="block transition-opacity hover:opacity-80">
-                    {inner}
-                  </Link>
-                );
-              })}
-            </div>
-          </Reveal>
-        </div>
       </Section>
 
       {/* SPEAKER PHOTO STRIP */}
@@ -471,9 +342,9 @@ function HomePage() {
             </p>
             <GoldRule className="mx-auto mt-10" />
             <p className="mx-auto mt-10 max-w-2xl text-[15px] leading-[1.9] text-white/85 md:text-base">
-              Whether treating patients, writing the next book, recording a podcast episode, or
-              speaking from the stage, Dr. Andrews remains guided by the same principles that have
-              shaped his journey from the beginning.
+              Whether writing the next book, recording a podcast episode, or speaking from the
+              stage, Dr. Andrews remains guided by the principles that have shaped his journey from
+              the beginning: excellence, integrity, compassion, and service.
             </p>
           </div>
         </Reveal>
