@@ -75,7 +75,7 @@ function BooksPage() {
       <Section surface="navy">
         <div className="grid items-center gap-16 lg:grid-cols-[1.4fr_1fr] lg:gap-24">
           <div>
-            <Eyebrow tone="gold">New Book</Eyebrow>
+            <Eyebrow tone="gold">Coming Spring 2027</Eyebrow>
             <h1 className="font-serif font-light leading-[0.95] tracking-[-0.02em] text-white text-[clamp(3rem,7vw,6rem)]">
               The Bespoke
               <span className="block italic font-normal">Life.</span>
@@ -184,8 +184,8 @@ function BooksPage() {
             <div>
               <p className="text-[15px] leading-[1.85] text-white/80">
                 The Bespoke Life Inventory companion workbook transforms the concepts in this book
-                into a practical, actionable process. Through guided exercises, clinical prompts, and
-                a structured framework, it helps you answer the inventory questions with honesty,
+                into a practical, actionable process. Through guided exercises, structured prompts,
+                and a framework, it helps you answer the inventory questions with honesty,
                 identify where you may be distorting your measurements, and build your own Bespoke
                 Form. Whether used alongside the book or as a standalone tool, the workbook is where
                 insight becomes implementation.
@@ -222,7 +222,7 @@ function BooksPage() {
             {
               title: "The Bespoke Life Inventory",
               sub: "The Companion Workbook",
-              body: "Guided exercises, clinical prompts, and structured worksheets that turn insight into implementation.",
+              body: "Guided exercises, structured prompts, and worksheets that turn insight into implementation.",
               label: "REPLACE WITH WORKBOOK COVER",
             },
           ].map((p, i) => (
