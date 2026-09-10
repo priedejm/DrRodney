@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "../components/site/Reveal";
 import { PhotoPlaceholder } from "../components/site/PhotoPlaceholder";
 import { CTAButton, H1, H2, H3, Section, Eyebrow, GoldRule } from "../components/site/primitives";
@@ -62,13 +62,15 @@ const AUDIENCES = [
   },
 ];
 
+// Draft titles pending Dr. Andrews's approval - sourced from the Master Implementation
+// Brief's initial topic list (Section 8). Not yet finalized for public use.
 const TOPICS = [
-  { n: "01", title: "[Keynote title pending client approval]", audience: "[Audience description pending client approval]" },
-  { n: "02", title: "[Keynote title pending client approval]", audience: "[Audience description pending client approval]" },
-  { n: "03", title: "[Keynote title pending client approval]", audience: "[Audience description pending client approval]" },
-  { n: "04", title: "[Keynote title pending client approval]", audience: "[Audience description pending client approval]" },
-  { n: "05", title: "[Keynote title pending client approval]", audience: "[Audience description pending client approval]" },
-  { n: "06", title: "[Keynote title pending client approval]", audience: "[Audience description pending client approval]" },
+  { n: "01", title: "Success and Sanity", audience: "Executives · Entrepreneurs · High Achievers" },
+  { n: "02", title: "Designing a Purposeful Life", audience: "Community · Wellness · General Audiences" },
+  { n: "03", title: "Leadership and Professional Performance", audience: "Executives · Managers · Professional Teams" },
+  { n: "04", title: "Resilience and Personal Responsibility", audience: "Physicians · First Responders · Executives" },
+  { n: "05", title: "Executive Wellbeing", audience: "C-Suite · Boards · Leadership Teams" },
+  { n: "06", title: "Leverage Your Letters", audience: "Healthcare · Advanced Practice Providers · Clinicians" },
 ];
 
 function SpeakingPage() {
@@ -119,7 +121,7 @@ function SpeakingPage() {
             </h2>
             <div className="mt-12 space-y-7 font-serif text-[1.2rem] leading-[1.8] text-[var(--charcoal)] md:text-[1.3rem]">
               <p>
-                Dr. Andrews is a dynamic speaker who combines decades of clinical experience,
+                Dr. Andrews is a dynamic speaker who combines clinical experience, decades of
                 entrepreneurial insight, and a deep understanding of human behavior to deliver
                 presentations that are both engaging and transformative.
               </p>
@@ -256,7 +258,13 @@ function SpeakingPage() {
             <div>
               <GoldRule className="mx-auto" />
               <p className="mt-8 font-serif text-3xl font-light leading-tight md:text-5xl">
-                Inquiries: DrRodneyAndrews.com/contact
+                Inquiries:{" "}
+                <Link
+                  to="/contact"
+                  className="underline decoration-[var(--gold)] decoration-2 underline-offset-8 transition-opacity hover:opacity-80"
+                >
+                  DrRodneyAndrews.com/contact
+                </Link>
               </p>
               <div className="mt-10">
                 <CTAButton variant="white-outline" to="/contact" withArrow>

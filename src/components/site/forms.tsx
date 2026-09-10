@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
+import { Checkbox } from "../ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -17,10 +18,16 @@ import { cn } from "../../lib/utils";
 const speakingSchema = z.object({
   name: z.string().min(2, "Required"),
   email: z.string().email("Valid email required"),
+  phone: z.string().optional(),
   organization: z.string().optional(),
+  eventName: z.string().optional(),
   eventDate: z.string().optional(),
   eventLocation: z.string().optional(),
+  isVirtual: z.boolean().optional(),
+  eventType: z.string().optional(),
   audience: z.string().optional(),
+  audienceSize: z.string().optional(),
+  requestedTopic: z.string().optional(),
   message: z.string().min(10, "Please share a few details"),
 });
 type SpeakingValues = z.infer<typeof speakingSchema>;
@@ -88,8 +95,16 @@ export function SpeakingInquiryForm({ onSurface = "light" }: { onSurface?: "ligh
           />
         </div>
         <div className="space-y-2">
+          <Label className={labelCls}>Phone</Label>
+          <Input type="tel" {...register("phone")} className={inputCls} placeholder="(555) 555-5555" />
+        </div>
+        <div className="space-y-2">
           <Label className={labelCls}>Organization</Label>
           <Input {...register("organization")} className={inputCls} />
+        </div>
+        <div className="space-y-2">
+          <Label className={labelCls}>Event Name</Label>
+          <Input {...register("eventName")} className={inputCls} />
         </div>
         <div className="space-y-2">
           <Label className={labelCls}>Event Date</Label>
@@ -97,9 +112,38 @@ export function SpeakingInquiryForm({ onSurface = "light" }: { onSurface?: "ligh
         </div>
         <div className="space-y-2 md:col-span-2">
           <Label className={labelCls}>Event Location</Label>
-          <Input {...register("eventLocation")} className={inputCls} />
+          <Input
+            {...register("eventLocation")}
+            className={inputCls}
+            placeholder="City, State - or note if virtual"
+          />
+          <div className="flex items-center gap-2 pt-1">
+            <Checkbox
+              id="isVirtual"
+              checked={watch("isVirtual") ?? false}
+              onCheckedChange={(v) => setValue("isVirtual", v === true)}
+            />
+            <Label htmlFor="isVirtual" className={cn(labelCls, "font-normal")}>
+              This is a virtual event
+            </Label>
+          </div>
         </div>
-        <div className="space-y-2 md:col-span-2">
+        <div className="space-y-2">
+          <Label className={labelCls}>Event Type</Label>
+          <Select onValueChange={(v) => setValue("eventType", v)} value={watch("eventType") ?? ""}>
+            <SelectTrigger className={inputCls}>
+              <SelectValue placeholder="Select event type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="keynote">Keynote</SelectItem>
+              <SelectItem value="panel">Panel</SelectItem>
+              <SelectItem value="workshop">Workshop</SelectItem>
+              <SelectItem value="fireside">Fireside Chat</SelectItem>
+              <SelectItem value="other">Other</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="space-y-2">
           <Label className={labelCls}>Audience Type</Label>
           <Select onValueChange={(v) => setValue("audience", v)} value={watch("audience") ?? ""}>
             <SelectTrigger className={inputCls}>
@@ -112,6 +156,18 @@ export function SpeakingInquiryForm({ onSurface = "light" }: { onSurface?: "ligh
               <SelectItem value="other">Other</SelectItem>
             </SelectContent>
           </Select>
+        </div>
+        <div className="space-y-2">
+          <Label className={labelCls}>Audience Size</Label>
+          <Input {...register("audienceSize")} className={inputCls} placeholder="e.g. 150 attendees" />
+        </div>
+        <div className="space-y-2 md:col-span-2">
+          <Label className={labelCls}>Requested Topic</Label>
+          <Input
+            {...register("requestedTopic")}
+            className={inputCls}
+            placeholder="A specific keynote topic, or leave blank to discuss"
+          />
         </div>
       </div>
       <div className="space-y-2">
