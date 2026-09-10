@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "The official site of Dr. Rodney Andrews - physician, author of The Bespoke Life, podcast host of Peak Performance, and nationally recognized speaker.",
+          "The official site of Dr. Rodney Andrews - physician, author of The Bespoke Life, podcast host of Success & Sanity, and nationally recognized speaker.",
       },
       { property: "og:title", content: "Dr. Rodney Andrews" },
       {

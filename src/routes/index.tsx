@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "The official platform of Dr. W. Rodney Andrews, DNP - keynote speaker, founder of Charleston Medicine, author of The Bespoke Life, and host of Peak Performance.",
+          "The official platform of Dr. W. Rodney Andrews, DNP - keynote speaker, founder of Charleston Medicine, author of The Bespoke Life, and host of Success & Sanity.",
       },
       { property: "og:title", content: "Dr. W. Rodney Andrews" },
       {

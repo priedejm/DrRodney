@@ -8,13 +8,13 @@ import podcastHeadshot from "../assets/podcastHeadshot.png";
 export const Route = createFileRoute("/podcast")({
   head: () => ({
     meta: [
-      { title: "Peak Performance - The Podcast with Dr. Rodney Andrews" },
+      { title: "Success & Sanity - The Podcast with Dr. Rodney Andrews" },
       {
         name: "description",
         content:
-          "Peak Performance with Dr. Rodney Andrews - health, business, longevity, leadership, and the conversations no one else is having.",
+          "Success & Sanity with Dr. Rodney Andrews - candid conversations with successful people about ambition, mental health, motivation, and what achievement looks like behind the scenes.",
       },
-      { property: "og:title", content: "Peak Performance with Dr. Rodney Andrews" },
+      { property: "og:title", content: "Success & Sanity with Dr. Rodney Andrews" },
       {
         property: "og:description",
         content:
@@ -39,15 +39,15 @@ function PodcastPage() {
           <div>
             <Eyebrow tone="gold">The Podcast</Eyebrow>
             <H1 className="text-white">
-              Peak <span className="italic font-normal">Performance.</span>
+              Success & <span className="italic font-normal">Sanity.</span>
             </H1>
             <p className="mt-4 font-serif text-2xl italic font-light text-white/70 md:text-3xl">
               with Dr. Rodney Andrews.
             </p>
             <GoldRule className="mt-10" />
             <p className="mt-6 max-w-xl text-[15px] leading-[1.85] text-white/80">
-              One conversation at a time - on health, business, longevity, leadership, and the
-              things nobody else is talking about.
+              Candid conversations with successful people about ambition, mental health,
+              motivation, performance, and what achievement looks like behind the scenes.
             </p>
           </div>
           <div className="aspect-[4/5] overflow-hidden bg-[var(--charcoal)]">
@@ -78,20 +78,16 @@ function PodcastPage() {
               <H2>I am Dr. Andrews, and I am so glad you are here.</H2>
               <div className="mt-10 space-y-6 text-[15px] leading-[1.9] text-[var(--charcoal)]/80 md:text-base">
                 <p>
-                  Peak Performance started as just an idea. Since then, we have acquired the team
-                  necessary to put on the production we have been dreaming about. The idea of Peak
-                  Performance came to Dr. Andrews and since then, he was determined to make it
-                  reality. He wants to pursue a podcast that touches on topics that are taboo, that
-                  encourage you the viewer to dig deeper, that explore empathy, and that give you the
-                  freedom to dive into stories no one thought they needed.
+                  Success & Sanity is a conversation about what achievement actually costs - and
+                  what it's worth. Each episode, Dr. Andrews sits down with people who have built
+                  something real - a business, a career, a reputation - and asks the questions
+                  polished interviews tend to skip: what did the pursuit demand of you, what did
+                  you get wrong along the way, and what would you tell yourself at the start?
                 </p>
                 <p>
-                  This podcast was born to feed the kind of curiosity even an encyclopedia cannot
-                  handle. Do you enjoy learning useless but oddly fascinating things? Do you love
-                  raw, unfiltered chats with interesting people? Or maybe it is the ability to turn
-                  completely irrelevant facts into strangely addictive conversations that keeps you
-                  coming back? Then this is your place. Listen while you cook, clean, or sit through
-                  work calls where all you have to do is nod.
+                  It's a show for anyone who suspects that success and sanity aren't always on
+                  speaking terms, and wants an honest look at how the people who've made it
+                  actually hold both together.
                 </p>
               </div>
             </div>
