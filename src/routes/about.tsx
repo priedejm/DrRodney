@@ -36,7 +36,7 @@ const STORY = [
   `The journey was demanding. During a period marked by the unprecedented challenges of the COVID-19 pandemic, Rodney navigated rigorous academic requirements, clinical rotations, and long nights of study while remaining devoted to his family. It was a season defined by sacrifice, resilience, and an unwavering belief that meaningful work often requires extraordinary commitment.`,
   `That commitment culminated in the achievement of multiple advanced credentials, earning him the distinction of Dr. Rodney Andrews, DNP, AGNP-BC, PMHNP. Following graduation, he trained under the respected mentorship of Dr. Eric Bolster, gaining extensive experience in a high-volume clinical environment that sharpened both his clinical expertise and operational leadership. There, he developed a comprehensive understanding of patient care while further refining the business instincts that had shaped his career from the beginning.`,
   `Driven by a vision to redefine healthcare through personalized, relationship-centered medicine, Dr. Andrews founded Charleston Medicine and Behavioral Health - a concierge-style practice dedicated to delivering exceptional physical and mental healthcare. The practice quickly exceeded expectations, generating more than $1 million in revenue during its first year of operation and establishing itself as a premier destination for comprehensive, patient-focused care.`,
-  `Today, Dr. Andrews continues to serve patients personally, overseeing their care from consultation through treatment and long-term wellness planning. Beyond clinical practice, he is an author, podcast host, entrepreneur, and sought-after speaker whose insights on healthcare, business, leadership, and personal growth have reached audiences across the United States. Whether treating patients, writing his next book, recording a podcast episode, or speaking from the stage, he remains guided by the same principles that shaped his journey from the beginning: excellence, integrity, compassion, and service.`,
+  `Today, Dr. Andrews continues to practice clinically in Charleston. Beyond clinical practice, he is an author, podcast host, entrepreneur, and sought-after speaker whose insights on healthcare, business, leadership, and personal growth have reached audiences across the United States. Whether writing his next book, recording a podcast episode, or speaking from the stage, he remains guided by the principles that shaped his journey from the beginning: excellence, integrity, compassion, and service.`,
 ];
 
 const PHOTOS = [
@@ -64,13 +64,13 @@ function AboutPage() {
           <div>
             <Eyebrow tone="gold">About</Eyebrow>
             <H1 className="text-white">
-              Dr. William Rodney
+              Dr. Rodney
               <span className="block italic font-normal">Andrews.</span>
             </H1>
             <div className="mt-10 max-w-lg">
               <GoldRule />
               <p className="mt-6 text-[0.78rem] uppercase tracking-[0.2em] leading-[1.8] text-white/70">
-                DNP · AGNP-BC · PMHNP · Physician · Entrepreneur · Author · Speaker
+                DNP · AGNP-BC · PMHNP · Entrepreneur · Author · Speaker
               </p>
             </div>
             <p className="mt-10 max-w-lg text-[15px] leading-[1.85] text-white/75">
