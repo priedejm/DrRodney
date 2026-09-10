@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
 import { CTAButton, H1, H2, H3, Section, Eyebrow, GoldRule } from "../components/site/primitives";
 import { PhotoPlaceholder } from "../components/site/PhotoPlaceholder";
 import { SpeakingInquiryForm, GeneralInquiryForm } from "../components/site/forms";
@@ -172,25 +171,13 @@ function HomePage() {
                 <h3 className="mt-6 font-serif text-3xl text-white md:text-4xl">{p.title}</h3>
                 <p className="mt-6 flex-1 text-[15px] leading-[1.85] text-white/70">{p.body}</p>
                 <div className="mt-10">
-                  {p.link.to ? (
-                    <Link
-                      to={p.link.to}
-                      className="inline-flex items-center gap-2 text-[0.74rem] uppercase tracking-[0.24em] text-white hover:text-[var(--gold)]"
-                    >
-                      {p.link.label}
-                      <span aria-hidden>→</span>
-                    </Link>
-                  ) : (
-                    <a
-                      href={p.link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-[0.74rem] uppercase tracking-[0.24em] text-white hover:text-[var(--gold)]"
-                    >
-                      {p.link.label}
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </a>
-                  )}
+                  <Link
+                    to={p.link.to}
+                    className="inline-flex items-center gap-2 text-[0.74rem] uppercase tracking-[0.24em] text-white hover:text-[var(--gold)]"
+                  >
+                    {p.link.label}
+                    <span aria-hidden>→</span>
+                  </Link>
                 </div>
               </article>
             </Reveal>
