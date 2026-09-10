@@ -7,7 +7,7 @@ import { SpeakingInquiryForm, GeneralInquiryForm } from "../components/site/form
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact - Dr. W. Rodney Andrews" },
+      { title: "Contact - Dr. Rodney Andrews" },
       {
         name: "description",
         content:

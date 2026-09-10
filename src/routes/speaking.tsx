@@ -9,7 +9,7 @@ import speakerPhoto from "../assets/speakerPhoto.png";
 export const Route = createFileRoute("/speaking")({
   head: () => ({
     meta: [
-      { title: "Speaking - Dr. W. Rodney Andrews" },
+      { title: "Speaking - Dr. Rodney Andrews" },
       {
         name: "description",
         content:

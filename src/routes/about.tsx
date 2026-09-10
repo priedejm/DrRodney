@@ -11,17 +11,17 @@ import graduationMascot from "../assets/graduationMascot.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About - Dr. William Rodney Andrews, DNP" },
+      { title: "About - Dr. Rodney Andrews, DNP" },
       {
         name: "description",
         content:
-          "Dr. William Rodney Andrews, DNP, AGNP-BC, PMHNP - from rural North Carolina to founder of Charleston Medicine and Behavioral Health.",
+          "Dr. Rodney Andrews, DNP, AGNP-BC, PMHNP - from rural North Carolina to founder of Charleston Medicine and Behavioral Health.",
       },
       { property: "og:title", content: "About Dr. Rodney Andrews" },
       {
         property: "og:description",
         content:
-          "The story behind the physician, entrepreneur, author, and speaker - vision, discipline, and a relentless pursuit of excellence.",
+          "The story behind the advanced provider, entrepreneur, author, and speaker - vision, discipline, and a relentless pursuit of excellence.",
       },
     ],
   }),
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/about")({
 });
 
 const STORY = [
-  `Dr. William Rodney Andrews' story is one of vision, discipline, and relentless pursuit of excellence. Raised in the small town of Hillsborough, North Carolina, where hard work was not merely encouraged but expected, he developed an entrepreneurial mindset at an early age. Growing up in a close-knit community, Rodney understood that success would require exceptional effort, unwavering determination, and a willingness to create opportunities where none existed.`,
+  `Dr. Rodney Andrews' story is one of vision, discipline, and relentless pursuit of excellence. Raised in the small town of Hillsborough, North Carolina, where hard work was not merely encouraged but expected, he developed an entrepreneurial mindset at an early age. Growing up in a close-knit community, Rodney understood that success would require exceptional effort, unwavering determination, and a willingness to create opportunities where none existed.`,
   `Long before earning professional titles and accolades, Rodney was building businesses. As a young entrepreneur, he began by mowing lawns throughout his community, eventually transforming a modest side venture into a successful lawn care company with employees working under his leadership. Years later, after strategically growing and selling the business, he used the proceeds to purchase a convenience store for his father - a reflection of both his business acumen and deep commitment to family.`,
   `A pivotal moment in Rodney's journey came with his acceptance to Duke University. While pursuing his education, he simultaneously entered the world of luxury sales, where his natural talent for communication, leadership, and relationship building quickly distinguished him from his peers. Rising from an entry-level position to the top ranks of the organization within months, he became one of the company's highest-performing sales professionals. His success led to responsibilities beyond personal production - he was entrusted with training new sales representatives, developing sales strategies, and mentoring future leaders within the organization.`,
   `Yet despite achieving remarkable professional success, Rodney felt called toward a greater purpose - one centered on service, impact, and improving the lives of others. At the age of 40, while balancing the responsibilities of marriage and raising a teenage son, he made the courageous decision to pursue a career in healthcare. He was accepted into the Medical University of South Carolina, embarking on an entirely new chapter of life.`,

@@ -74,17 +74,17 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
-      { title: "Dr. Rodney Andrews - Physician. Author. Speaker. Podcast Host." },
+      { title: "Dr. Rodney Andrews - Advanced Provider. Author. Speaker. Podcast Host." },
       {
         name: "description",
         content:
-          "The official site of Dr. Rodney Andrews - physician, author of The Bespoke Life, podcast host of Success & Sanity, and nationally recognized speaker.",
+          "The official site of Dr. Rodney Andrews - advanced provider, author of The Bespoke Life, podcast host of Success & Sanity, and nationally recognized speaker.",
       },
       { property: "og:title", content: "Dr. Rodney Andrews" },
       {
         property: "og:description",
         content:
-          "Physician. Author. Speaker. Podcast Host. Helping people live with greater clarity, purpose, and performance.",
+          "Advanced Provider. Author. Speaker. Podcast Host. Helping people live with greater clarity, purpose, and performance.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

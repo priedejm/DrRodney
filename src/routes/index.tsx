@@ -10,16 +10,16 @@ import speakerPhoto from "../assets/speakerPhoto.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dr. W. Rodney Andrews - Keynote Speaker · Clinician · Author" },
+      { title: "Dr. Rodney Andrews - Speaker · Author · Advanced Provider" },
       {
         name: "description",
         content:
-          "The official platform of Dr. W. Rodney Andrews, DNP - keynote speaker, founder of Charleston Medicine, author of The Bespoke Life, and host of Success & Sanity.",
+          "The official platform of Dr. Rodney Andrews, DNP - keynote speaker, founder of Charleston Medicine, author of The Bespoke Life, and host of Success & Sanity.",
       },
-      { property: "og:title", content: "Dr. W. Rodney Andrews" },
+      { property: "og:title", content: "Dr. Rodney Andrews" },
       {
         property: "og:description",
-        content: "Keynote Speaker · Clinician · Author · Podcast Host.",
+        content: "Speaker · Author · Advanced Provider · Podcast Host.",
       },
     ],
   }),
@@ -102,7 +102,7 @@ function HomePage() {
                 Speaker · Author · Advanced Provider
               </p>
               <h1 className="font-serif font-light leading-[0.95] tracking-[-0.02em] text-white text-[clamp(3.2rem,8vw,7rem)]">
-                Dr. W. Rodney
+                Dr. Rodney
                 <span className="block italic font-normal text-[clamp(3.8rem,10vw,8.5rem)]">
                   Andrews
                 </span>
