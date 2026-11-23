@@ -14,6 +14,12 @@ import {
   SelectValue,
 } from "../ui/select";
 import { cn } from "../../lib/utils";
+import { useContent } from "@/cms/SiteData";
+
+/** Non-empty, de-duplicated choices for a dropdown. */
+function choices(list: string[]) {
+  return Array.from(new Set(list.map((s) => s.trim()).filter(Boolean)));
+}
 
 const speakingSchema = z.object({
   name: z.string().min(2, "Required"),
@@ -58,10 +64,11 @@ export function SpeakingInquiryForm({ onSurface = "light" }: { onSurface?: "ligh
     watch,
     formState: { errors, isSubmitting },
   } = useForm<SpeakingValues>({ resolver: zodResolver(speakingSchema) });
+  const f = useContent().site.forms;
 
   const onSubmit = async (values: SpeakingValues) => {
     await new Promise((r) => setTimeout(r, 400));
-    toast.success("Thank you - your speaking inquiry has been received.", {
+    toast.success(f.speakingSuccess, {
       description: "We will follow up at " + values.email + " shortly.",
     });
     reset();
@@ -135,11 +142,11 @@ export function SpeakingInquiryForm({ onSurface = "light" }: { onSurface?: "ligh
               <SelectValue placeholder="Select event type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="keynote">Keynote</SelectItem>
-              <SelectItem value="panel">Panel</SelectItem>
-              <SelectItem value="workshop">Workshop</SelectItem>
-              <SelectItem value="fireside">Fireside Chat</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
+              {choices(f.eventTypes).map((c) => (
+                <SelectItem key={c} value={c}>
+                  {c}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -150,10 +157,11 @@ export function SpeakingInquiryForm({ onSurface = "light" }: { onSurface?: "ligh
               <SelectValue placeholder="Select audience" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="healthcare">Healthcare</SelectItem>
-              <SelectItem value="business">Business / Leadership</SelectItem>
-              <SelectItem value="community">Community / Wellness</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
+              {choices(f.audienceTypes).map((c) => (
+                <SelectItem key={c} value={c}>
+                  {c}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -189,7 +197,7 @@ export function SpeakingInquiryForm({ onSurface = "light" }: { onSurface?: "ligh
             : "bg-[var(--navy)] text-white",
         )}
       >
-        {isSubmitting ? "Sending…" : "Submit Inquiry"}
+        {isSubmitting ? "Sending…" : f.speakingSubmit}
       </button>
     </form>
   );
@@ -202,10 +210,11 @@ export function GeneralInquiryForm() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<GeneralValues>({ resolver: zodResolver(generalSchema) });
+  const f = useContent().site.forms;
 
   const onSubmit = async (values: GeneralValues) => {
     await new Promise((r) => setTimeout(r, 400));
-    toast.success("Thank you - your message has been received.", {
+    toast.success(f.generalSuccess, {
       description: "We'll respond to " + values.email + " soon.",
     });
     reset();
@@ -230,7 +239,7 @@ export function GeneralInquiryForm() {
         disabled={isSubmitting}
         className="inline-flex items-center justify-center rounded-sm bg-[var(--navy)] px-7 py-3.5 text-sm font-medium tracking-wide text-white transition-opacity hover:opacity-90 disabled:opacity-60"
       >
-        {isSubmitting ? "Sending…" : "Send Message"}
+        {isSubmitting ? "Sending…" : f.generalSubmit}
       </button>
     </form>
   );
@@ -243,10 +252,11 @@ export function MailingListForm() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<MailingValues>({ resolver: zodResolver(mailingSchema) });
+  const f = useContent().site.forms;
 
   const onSubmit = async (values: MailingValues) => {
     await new Promise((r) => setTimeout(r, 400));
-    toast.success("You're on the list.", {
+    toast.success(f.mailingSuccess, {
       description: "Confirmation sent to " + values.email,
     });
     reset();
@@ -266,7 +276,7 @@ export function MailingListForm() {
         disabled={isSubmitting}
         className="inline-flex items-center justify-center rounded-sm bg-[var(--forest)] px-7 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
       >
-        {isSubmitting ? "…" : "Subscribe"}
+        {isSubmitting ? "…" : f.mailingSubmit}
       </button>
     </form>
   );

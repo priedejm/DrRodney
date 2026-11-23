@@ -1,0 +1,14 @@
+Options -MultiViews -Indexes
+RewriteEngine On
+
+# --- Content admin protection ---------------------------------------------
+# Private data (edited text, gallery order, backups, login counters).
+RewriteRule ^site-data(/|$) - [F,L]
+# Helper files in /api that are only meant to be included, never requested.
+RewriteRule ^api/_ - [F,L]
+# Nothing executable is ever served from uploads.
+RewriteRule ^uploads/.*\.(php\d?|phtml|phar|pl|py|cgi|sh|html?|svg)$ - [F,L,NC]
+
+# --- SPA routing -------------------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]

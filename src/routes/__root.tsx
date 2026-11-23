@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
 } from "@tanstack/react-router";
 import { useEffect } from "react";
@@ -12,6 +13,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site/SiteHeader";
 import { SiteFooter } from "../components/site/SiteFooter";
 import { Toaster } from "../components/ui/sonner";
+import { SiteDataProvider } from "@/cms/SiteData";
 
 function NotFoundComponent() {
   return (
@@ -97,17 +99,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
 
   return (
     <QueryClientProvider client={queryClient}>
       <HeadContent />
-      <div className="flex min-h-screen flex-col bg-background text-foreground">
-        <SiteHeader />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <SiteFooter />
-      </div>
+      {isAdmin ? (
+        <Outlet />
+      ) : (
+        <SiteDataProvider>
+          <div className="flex min-h-screen flex-col bg-background text-foreground">
+            <SiteHeader />
+            <main className="flex-1">
+              <Outlet />
+            </main>
+            <SiteFooter />
+          </div>
+        </SiteDataProvider>
+      )}
       <Toaster />
     </QueryClientProvider>
   );

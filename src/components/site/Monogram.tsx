@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "../../lib/utils";
+import { useContent } from "@/cms/SiteData";
 
 export function Monogram({
   size = 36,
@@ -10,8 +11,9 @@ export function Monogram({
   className?: string;
   withWordmark?: boolean;
 }) {
+  const { brand } = useContent().site;
   return (
-    <Link to="/" className={cn("group inline-flex items-center gap-3", className)} aria-label="Dr. Rodney Andrews - Home">
+    <Link to="/" className={cn("group inline-flex items-center gap-3", className)} aria-label={`${brand.wordmark} - Home`}>
       <span
         className="inline-flex items-center justify-center border font-serif transition-colors group-hover:border-[var(--gold)] group-hover:text-[var(--gold)]"
         style={{
@@ -24,11 +26,11 @@ export function Monogram({
         }}
         aria-hidden
       >
-        WRA
+        {brand.monogram}
       </span>
       {withWordmark && (
         <span className="hidden font-serif text-[0.78rem] uppercase tracking-[0.22em] text-white transition-colors group-hover:text-[var(--gold)] sm:inline">
-          Dr. Rodney Andrews
+          {brand.wordmark}
         </span>
       )}
     </Link>

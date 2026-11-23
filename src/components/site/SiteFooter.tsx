@@ -1,6 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Linkedin, Youtube, Facebook, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Monogram } from "./Monogram";
+import { useContent } from "@/cms/SiteData";
+import { safeHref } from "@/cms/SmartLink";
+import { telHref } from "@/cms/Rich";
 
 const EXPLORE = [
   { to: "/about", label: "About" },
@@ -10,12 +13,9 @@ const EXPLORE = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-const ELSEWHERE = [
-  { href: "https://CharlestonMedicine.com", label: "Charleston Medicine" },
-  { href: "https://RodneyAndrewsLive.com", label: "Rodney Andrews Live" },
-];
-
 export function SiteFooter() {
+  const { footer, contact } = useContent().site;
+  const ELSEWHERE = footer.links.map((l) => ({ href: safeHref(l.url), label: l.label }));
   return (
     <footer className="surface-ink">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
@@ -23,14 +23,14 @@ export function SiteFooter() {
           <div>
             <Monogram size={44} withWordmark />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/65">
-              Helping people live with greater clarity, purpose, and performance.
+              {footer.blurb}
             </p>
             <Link
               to="/contact"
               className="mt-8 inline-flex items-center gap-2 border px-5 py-2.5 text-[0.72rem] uppercase tracking-[0.24em]"
               style={{ borderColor: "var(--forest)", color: "#9DBFA6" }}
             >
-              Inquire About Speaking
+              {footer.ctaLabel}
               <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -40,7 +40,7 @@ export function SiteFooter() {
               className="mb-5 text-[10px] uppercase tracking-[0.3em]"
               style={{ color: "var(--gold)" }}
             >
-              Explore
+              {footer.exploreHeading}
             </p>
             <ul className="space-y-3 text-sm">
               {EXPLORE.map((n) => (
@@ -58,11 +58,11 @@ export function SiteFooter() {
               className="mb-5 text-[10px] uppercase tracking-[0.3em]"
               style={{ color: "var(--gold)" }}
             >
-              Elsewhere
+              {footer.elsewhereHeading}
             </p>
             <ul className="space-y-3 text-sm">
               {ELSEWHERE.map((e) => (
-                <li key={e.href}>
+                <li key={e.href + e.label}>
                   <a
                     href={e.href}
                     target="_blank"
@@ -82,24 +82,25 @@ export function SiteFooter() {
               className="mb-5 text-[10px] uppercase tracking-[0.3em]"
               style={{ color: "var(--gold)" }}
             >
-              Contact
+              {footer.contactHeading}
             </p>
             <ul className="space-y-3 text-sm text-white/75">
-              <li>
-                <a href="mailto:info@charlestonmedicine.com" className="hover:text-white">
-                  info@charlestonmedicine.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:8439138558" className="hover:text-white">
-                  843-913-8558
-                </a>
-              </li>
-              <li>Charleston, South Carolina</li>
+              {contact.email && (
+                <li>
+                  <a href={`mailto:${contact.email.trim()}`} className="hover:text-white">
+                    {contact.email}
+                  </a>
+                </li>
+              )}
+              {contact.phone && (
+                <li>
+                  <a href={telHref(contact.phone)} className="hover:text-white">
+                    {contact.phone}
+                  </a>
+                </li>
+              )}
+              {contact.location && <li>{contact.location}</li>}
             </ul>
-            <p className="mt-6 text-sm text-white/50">
-              [Social media platforms and handles pending client approval]
-            </p>
           </div>
         </div>
 
@@ -107,8 +108,8 @@ export function SiteFooter() {
           className="mt-16 flex flex-col gap-3 border-t pt-6 text-[11px] uppercase tracking-[0.22em] text-white/45 sm:flex-row sm:items-center sm:justify-between"
           style={{ borderColor: "rgba(201,169,110,0.18)" }}
         >
-          <span>© {new Date().getFullYear()} Dr. Rodney Andrews. All rights reserved.</span>
-          <span>Charleston, South Carolina</span>
+          <span>© {new Date().getFullYear()} {footer.copyrightName}. All rights reserved.</span>
+          <span>{footer.bottomRight}</span>
         </div>
       </div>
     </footer>

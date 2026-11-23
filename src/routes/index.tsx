@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CTAButton, H1, H2, H3, Section, Eyebrow, GoldRule } from "../components/site/primitives";
-import { PhotoPlaceholder } from "../components/site/PhotoPlaceholder";
+import { CTAButton, H2, H3, Section, Eyebrow, GoldRule } from "../components/site/primitives";
 import { SpeakingInquiryForm, GeneralInquiryForm } from "../components/site/forms";
 import { Reveal } from "../components/site/Reveal";
-import heroVideo from "../assets/heroVideo.mp4";
-import podcastHeadshot from "../assets/podcastHeadshot.png";
-import speakerPhoto from "../assets/speakerPhoto.png";
+import { BgVideo } from "../components/site/BgVideo";
+import { useContent, useImage, useVideo } from "@/cms/SiteData";
+import { Rich } from "@/cms/Rich";
+import { SmartLink } from "@/cms/SmartLink";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,63 +26,22 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const PILLARS = [
-  {
-    n: "01",
-    title: "Speaking",
-    body: "Keynote and conference speaker on integrative health, resilience, leadership, and human performance. Built for medical, executive, and lifestyle audiences.",
-    link: { to: "/speaking", label: "Explore Speaking" },
-  },
-  {
-    n: "02",
-    title: "Writing",
-    body: "The Bespoke Life: Design Your Path, Purpose, and Prosperity. A practical guide to building a life that is authentically yours - not the life you were told to want.",
-    link: { to: "/books", label: "About the Book" },
-  },
-  {
-    n: "03",
-    title: "Clinician",
-    body: "Success & Sanity - Rodney sitting down with successful people to explore what achievement actually looks like behind the scenes.",
-    link: { to: "/podcast", label: "Conversations" },
-  },
-];
-
-const TOPICS = [
-  {
-    n: "01",
-    title: "The Psychology of Sustainable Performance",
-    audience: "How people perform at a high level over time.",
-  },
-  {
-    n: "02",
-    title: "The Mind-Body Connection",
-    audience: "How physical and psychological systems interact to influence performance.",
-  },
-  {
-    n: "03",
-    title: "Resilience, Burnout & Recovery",
-    audience: "What happens when the demands exceed our ability to recover.",
-  },
-  {
-    n: "04",
-    title: "Leadership Under Pressure",
-    audience: "How leaders think, decide and lead when stakes are high.",
-  },
-];
+const num = (i: number) => String(i + 1).padStart(2, "0");
 
 function HomePage() {
+  const c = useContent().home;
+  const heroVideo = useVideo("home-hero-video");
+  const podcastHeadshot = useImage("home-podcast-photo");
+  const speakerPhoto = useImage("home-speaker-photo");
+
   return (
     <>
       {/* HERO — no reveal, already in viewport on load */}
       <section className="relative min-h-[88vh] overflow-hidden bg-[var(--ink)]">
-        <video
+        <BgVideo
           src={heroVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
           className="absolute inset-0 h-full w-full object-cover opacity-85"
-          aria-label="REPLACE WITH DR. ANDREWS SPEAKING FOOTAGE - conference room, audience visible"
+          label="Dr. Rodney Andrews speaking at a conference"
         />
         <div className="pointer-events-none absolute inset-0 bg-[var(--ink)]/35" />
         <div
@@ -99,26 +58,26 @@ function HomePage() {
                 className="mb-6 text-[10px] uppercase tracking-[0.36em]"
                 style={{ color: "var(--gold)" }}
               >
-                Speaker · Author · Advanced Provider
+                {c.hero.eyebrow}
               </p>
               <h1 className="font-serif font-light leading-[0.95] tracking-[-0.02em] text-white text-[clamp(3.2rem,8vw,7rem)]">
-                Dr. Rodney
+                {c.hero.titleLine1}
                 <span className="block italic font-normal text-[clamp(3.8rem,10vw,8.5rem)]">
-                  Andrews
+                  {c.hero.titleLine2}
                 </span>
               </h1>
               <div className="mt-10 max-w-2xl">
                 <GoldRule />
                 <p className="mt-6 text-[0.78rem] leading-[1.8] uppercase tracking-[0.18em] text-white/70">
-                  DNP, AGNP-BC, PMHNP
+                  {c.hero.credentials}
                 </p>
               </div>
               <div className="mt-10 flex flex-wrap gap-3 pointer-events-auto">
                 <CTAButton variant="forest" to="/contact" withArrow>
-                  Inquire About Speaking
+                  {c.hero.ctaPrimary}
                 </CTAButton>
                 <CTAButton variant="white-outline" to="/speaking">
-                  Speaking Topics
+                  {c.hero.ctaSecondary}
                 </CTAButton>
               </div>
             </div>
@@ -131,18 +90,14 @@ function HomePage() {
         <Reveal>
           <div className="mx-auto max-w-4xl">
             <p className="font-serif text-[clamp(1.5rem,2.4vw,2.2rem)] font-light leading-[1.45] tracking-[-0.005em] text-[var(--charcoal)]">
-              Success isn't just about achieving more. It's about making sure what you're building
-              aligns with the life you actually want to live. Dr. Rodney Andrews explores the
-              intersection of psychology, performance, purpose, and personal fulfillment - challenging
-              people to look beyond traditional measures of success and consider not only what they
-              want to achieve, but why they're pursuing it.
+              <Rich text={c.intro.body} />
             </p>
             <div className="mt-12">
               <Link
                 to="/about"
                 className="inline-flex items-center gap-2 border-b border-[var(--forest)] pb-1 text-[0.78rem] uppercase tracking-[0.24em] text-[var(--forest)] hover:opacity-80"
               >
-                Read the full biography
+                {c.intro.linkLabel}
                 <span aria-hidden>→</span>
               </Link>
             </div>
@@ -154,31 +109,35 @@ function HomePage() {
       <Section surface="navy">
         <Reveal>
           <div className="max-w-4xl">
-            <Eyebrow tone="gold">What I Do</Eyebrow>
-            <H2 className="text-white">Explore the Work</H2>
+            <Eyebrow tone="gold">{c.pillars.eyebrow}</Eyebrow>
+            <H2 className="text-white">
+              <Rich text={c.pillars.title} />
+            </H2>
           </div>
         </Reveal>
         <div className="mt-20 grid gap-px bg-white/10 md:grid-cols-3">
-          {PILLARS.map((p, i) => (
-            <Reveal key={p.n} delay={i * 120}>
+          {c.pillars.items.map((p, i) => (
+            <Reveal key={i} delay={i * 120}>
               <article className="flex flex-col h-full bg-[var(--ink)] p-10 md:p-12">
                 <p
                   className="font-serif text-sm tracking-[0.3em]"
                   style={{ color: "var(--gold)" }}
                 >
-                  {p.n}
+                  {num(i)}
                 </p>
                 <h3 className="mt-6 font-serif text-3xl text-white md:text-4xl">{p.title}</h3>
                 <p className="mt-6 flex-1 text-[15px] leading-[1.85] text-white/70">{p.body}</p>
-                <div className="mt-10">
-                  <Link
-                    to={p.link.to}
-                    className="inline-flex items-center gap-2 text-[0.74rem] uppercase tracking-[0.24em] text-white hover:text-[var(--gold)]"
-                  >
-                    {p.link.label}
-                    <span aria-hidden>→</span>
-                  </Link>
-                </div>
+                {p.link && p.linkLabel && (
+                  <div className="mt-10">
+                    <SmartLink
+                      to={p.link}
+                      className="inline-flex items-center gap-2 text-[0.74rem] uppercase tracking-[0.24em] text-white hover:text-[var(--gold)]"
+                    >
+                      {p.linkLabel}
+                      <span aria-hidden>→</span>
+                    </SmartLink>
+                  </div>
+                )}
               </article>
             </Reveal>
           ))}
@@ -190,37 +149,40 @@ function HomePage() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <Reveal>
             <div>
-              <Eyebrow tone="gold">Speaking</Eyebrow>
-              <H2>Four ways to bring Dr. Andrews to your room.</H2>
+              <Eyebrow tone="gold">{c.speaking.eyebrow}</Eyebrow>
+              <H2>
+                <Rich text={c.speaking.title} />
+              </H2>
             </div>
           </Reveal>
           <Reveal delay={120}>
             <div>
               <div className="grid gap-px bg-[var(--charcoal)]/10 sm:grid-cols-2">
-                {TOPICS.map((t) => (
-                  <div key={t.n} className="bg-[var(--cream)] p-7">
+                {c.speaking.items.map((t, i) => (
+                  <div key={i} className="bg-[var(--cream)] p-7">
                     <p
                       className="font-serif text-sm tracking-[0.3em]"
                       style={{ color: "var(--gold)" }}
                     >
-                      {t.n}
+                      {num(i)}
                     </p>
                     <h3 className="mt-4 font-serif text-2xl leading-snug text-[var(--charcoal)]">
                       {t.title}
                     </h3>
                     <p className="mt-3 text-sm leading-[1.6] text-[var(--charcoal)]/60">
-                      {t.audience}
+                      {t.desc}
                     </p>
                   </div>
                 ))}
               </div>
-              <p className="mt-10 max-w-xl font-serif italic text-[var(--charcoal)]/70">
-                Each talk is adapted to the room, sourced from current literature, and built to
-                withstand the smartest person in it.
-              </p>
+              {c.speaking.note && (
+                <p className="mt-10 max-w-xl font-serif italic text-[var(--charcoal)]/70">
+                  {c.speaking.note}
+                </p>
+              )}
               <div className="mt-10">
                 <CTAButton variant="forest-outline" to="/speaking">
-                  View All Speaking Topics
+                  {c.speaking.ctaLabel}
                 </CTAButton>
               </div>
             </div>
@@ -230,45 +192,24 @@ function HomePage() {
 
       {/* BOOK */}
       <Section surface="navy">
-        <div className="grid items-center gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
+        <div className="max-w-3xl">
           <Reveal>
-            <PhotoPlaceholder
-              label="REPLACE WITH BESPOKE LIFE COVER IMAGE"
-              variant="tall"
-              tone="cream"
-              className="mx-auto max-w-sm"
-            />
-          </Reveal>
-          <Reveal delay={120}>
             <div>
-              <Eyebrow tone="gold">Coming Spring 2027</Eyebrow>
+              <Eyebrow tone="gold">{c.book.eyebrow}</Eyebrow>
               <h2 className="font-serif text-[clamp(2.4rem,5vw,4.2rem)] font-light leading-[1.05] text-white">
-                The Bespoke Life:
+                <Rich text={c.book.title} />
               </h2>
               <p className="mt-4 font-serif text-2xl italic font-light text-white/85 md:text-3xl">
-                Design Your Path, Purpose, and Prosperity.
-              </p>
-              <p className="mt-5 font-serif text-sm italic text-white/55">
-                Also available: The Companion Workbook - The Bespoke Life Inventory.
+                {c.book.subtitle}
               </p>
               <div className="mt-8 max-w-lg">
                 <GoldRule />
-                <p className="mt-6 text-[15px] leading-[1.85] text-white/75">
-                  The modern self-improvement industry promotes one-size-fits-all solutions for
-                  people who need a personalized approach. The Bespoke Life is different. It starts
-                  with understanding who you actually are - not who you are told to be.
-                </p>
+                <p className="mt-6 text-[15px] leading-[1.85] text-white/75">{c.book.body}</p>
               </div>
-              <div className="mt-10 flex flex-wrap items-center gap-6">
+              <div className="mt-10">
                 <CTAButton variant="white-outline" to="/books" withArrow>
-                  About the Book
+                  {c.book.ctaLabel}
                 </CTAButton>
-                <a
-                  href="#"
-                  className="border-b border-[var(--gold)] pb-1 text-[0.78rem] uppercase tracking-[0.24em] text-white hover:opacity-80"
-                >
-                  Find on Amazon →
-                </a>
               </div>
             </div>
           </Reveal>
@@ -280,11 +221,12 @@ function HomePage() {
         <div className="grid items-start gap-12 lg:grid-cols-[1.2fr_1fr]">
           <Reveal>
             <div>
-              <Eyebrow tone="gold">The Podcast</Eyebrow>
-              <H2>Success & Sanity with Dr. Rodney Andrews.</H2>
+              <Eyebrow tone="gold">{c.podcast.eyebrow}</Eyebrow>
+              <H2>
+                <Rich text={c.podcast.title} />
+              </H2>
               <p className="mt-8 max-w-xl text-[17px] leading-[1.85] text-[var(--charcoal)]/80">
-                Candid conversations with successful people about ambition, mental health,
-                motivation, performance, and what achievement looks like behind the scenes.
+                {c.podcast.body}
               </p>
             </div>
           </Reveal>
@@ -292,8 +234,9 @@ function HomePage() {
             <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-[var(--ink)]">
               <img
                 src={podcastHeadshot}
-                alt="REPLACE WITH DR. ANDREWS AT MIC PHOTO"
+                alt="Dr. Rodney Andrews at the podcast microphone"
                 className="h-full w-full object-cover grayscale"
+                loading="lazy"
               />
             </div>
           </Reveal>
@@ -303,7 +246,7 @@ function HomePage() {
         <Reveal>
           <div className="mt-14 text-center">
             <CTAButton variant="forest-outline" to="/podcast">
-              Listen to the Podcast
+              {c.podcast.ctaLabel}
             </CTAButton>
           </div>
         </Reveal>
@@ -315,6 +258,7 @@ function HomePage() {
           src={speakerPhoto}
           alt="Dr. Rodney Andrews speaking"
           className="absolute inset-0 h-full w-full object-cover opacity-60 grayscale"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)] via-transparent to-[var(--ink)]/40" />
       </section>
@@ -324,14 +268,17 @@ function HomePage() {
         <Reveal>
           <div className="mx-auto max-w-4xl text-center text-white">
             <p className="font-serif text-[clamp(2rem,4.4vw,3.6rem)] font-light leading-[1.15]">
-              Excellence. Integrity. <br className="hidden md:block" />
-              Compassion. Service.
+              {c.philosophy.title.split("\n").map((line, i) => (
+                <span key={i}>
+                  {i > 0 && <br className="hidden md:block" />}
+                  {i > 0 && " "}
+                  <Rich text={line} />
+                </span>
+              ))}
             </p>
             <GoldRule className="mx-auto mt-10" />
             <p className="mx-auto mt-10 max-w-2xl text-[15px] leading-[1.9] text-white/85 md:text-base">
-              Whether writing the next book, recording a podcast episode, or speaking from the
-              stage, Dr. Andrews remains guided by the principles that have shaped his journey from
-              the beginning: excellence, integrity, compassion, and service.
+              {c.philosophy.body}
             </p>
           </div>
         </Reveal>
@@ -341,11 +288,13 @@ function HomePage() {
       <Section surface="cream">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <Eyebrow tone="gold">Get in Touch</Eyebrow>
-            <H2>Invite Dr. Andrews to your stage.</H2>
+            <Eyebrow tone="gold">{c.contact.eyebrow}</Eyebrow>
+            <H2>
+              <Rich text={c.contact.title} />
+            </H2>
             <div className="mt-10">
               <CTAButton variant="ink" to="/contact" withArrow>
-                Inquire About Speaking
+                {c.contact.ctaLabel}
               </CTAButton>
             </div>
           </div>
@@ -354,8 +303,8 @@ function HomePage() {
         <div className="mt-20 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <div>
-              <Eyebrow tone="gold">Speaking Inquiries</Eyebrow>
-              <H3 className="text-[var(--ink)]">For Events</H3>
+              <Eyebrow tone="gold">{c.contact.speakingEyebrow}</Eyebrow>
+              <H3 className="text-[var(--ink)]">{c.contact.speakingTitle}</H3>
               <div className="mt-8">
                 <SpeakingInquiryForm onSurface="light" />
               </div>
@@ -363,8 +312,8 @@ function HomePage() {
           </Reveal>
           <Reveal delay={120}>
             <div>
-              <Eyebrow tone="gold">General Inquiries</Eyebrow>
-              <H3 className="text-[var(--ink)]">Everything Else</H3>
+              <Eyebrow tone="gold">{c.contact.generalEyebrow}</Eyebrow>
+              <H3 className="text-[var(--ink)]">{c.contact.generalTitle}</H3>
               <div className="mt-8">
                 <GeneralInquiryForm />
               </div>

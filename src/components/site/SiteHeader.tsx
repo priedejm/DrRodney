@@ -3,6 +3,8 @@ import { Menu, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "../ui/sheet";
 import { Monogram } from "./Monogram";
+import { useContent } from "@/cms/SiteData";
+import { safeHref } from "@/cms/SmartLink";
 
 const NAV = [
   { to: "/about", label: "About" },
@@ -12,13 +14,10 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-const EXTERNAL = [
-  { href: "https://CharlestonMedicine.com", label: "CharlestonMedicine.com" },
-  { href: "https://RodneyAndrewsLive.com", label: "RodneyAndrewsLive.com" },
-];
-
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const header = useContent().site.header;
+  const EXTERNAL = header.links.map((l) => ({ href: safeHref(l.url), label: l.label }));
 
   return (
     <header
@@ -33,7 +32,7 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-7xl items-center justify-end gap-8 px-6 py-2 text-[11px] tracking-[0.18em] uppercase text-white/55 lg:px-10">
           {EXTERNAL.map((e) => (
             <a
-              key={e.href}
+              key={e.href + e.label}
               href={e.href}
               target="_blank"
               rel="noopener noreferrer"
@@ -68,7 +67,7 @@ export function SiteHeader() {
             className="hidden items-center gap-2 border px-5 py-2.5 text-[0.72rem] uppercase tracking-[0.24em] transition-colors lg:inline-flex"
             style={{ borderColor: "var(--forest)", color: "#9DBFA6" }}
           >
-            Inquire
+            {header.ctaLabel}
             <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
 
@@ -110,12 +109,12 @@ export function SiteHeader() {
                   style={{ borderColor: "rgba(255,255,255,0.08)" }}
                 >
                   <p className="mb-3 text-[10px] uppercase tracking-[0.28em] text-white/50">
-                    Elsewhere
+                    {header.mobileLinksHeading}
                   </p>
                   <div className="flex flex-col gap-2">
                     {EXTERNAL.map((e) => (
                       <a
-                        key={e.href}
+                        key={e.href + e.label}
                         href={e.href}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -132,7 +131,7 @@ export function SiteHeader() {
                     className="mt-6 inline-flex w-full items-center justify-center gap-2 border px-5 py-3 text-[0.72rem] uppercase tracking-[0.24em]"
                     style={{ borderColor: "var(--forest)", color: "#9DBFA6" }}
                   >
-                    Inquire
+                    {header.ctaLabel}
                     <ArrowUpRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
